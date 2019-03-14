@@ -45,8 +45,19 @@ class UserController
     }
 
     //识别用户信息
-    public function vip()
+    public function vip(Request $request)
     {
-        var_dump($http_response_header);
+        print_r($_SERVER['HTTP_TOKEN']);
+        echo '</br>';
+        $uid=1000;
+        $key=$this->redis_h_u_key.$uid;
+        $token=Redis::hget($key,'token');
+        echo $token;
+        if($_SERVER['HTTP_TOKEN']==$token){
+            echo "登录成功";
+        }else{
+            echo "FAIL";
+        }
+
     }
 }
