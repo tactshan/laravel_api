@@ -29,8 +29,6 @@ class UserController
     public function user_register()
     {
         $data=$_POST;
-//        $data=$_GET;
-//        echo json_encode($data);die;
         $email = $data['email'];
         $pwd = $data['pwd'];
         if(empty($email)){
@@ -53,29 +51,32 @@ class UserController
     }
 
 
-
-
-
-
     //用户登录
     public function userLogin(Request $request)
     {
-       $user_name = $request->input('u');
-       $pass = $request->input('p');
-       $res=true;
+//        echo json_encode($_GET);die;
+       $email = $_POST['email'];
+       $pwd = $_POST['pwd'];
+        $where=[
+            'email'=>$email,
+            'pwd'=>$pwd
+        ];
+        $data=UserModel::where($where)->first();
+        if(empty($data)){
+            echo '账号或密码错误1';die;
+        }
        //登陆成功验证用户信息
-       if($res){
-           $uid = 1000;
-           $str = time().$uid.mt_rand(1111,9999);
-           $token=substr(md5($str),10,20);
+       $uid = $data->uid;
+       $str = time().$uid.mt_rand(1111,9999);
+       $token=substr(md5($str),10,20);
 
-           //保存到redis中
-           $key = $this->redis_h_u_key.$uid;
-           Redis::hSet($key,'token',$token);
-           Redis::expire($key,3600*24*7);
-       }else{
-           // TODO 登录失败
+       //保存到redis中
+       $key = $this->redis_h_u_key.$uid;
+       $res = Redis::hSet($key,'token',$token);
+       if($res){
+           echo '登录成功！！！';
        }
+       Redis::expire($key,3600*24*7);
     }
 
     //识别用户信息

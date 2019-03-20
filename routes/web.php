@@ -22,7 +22,7 @@ $router->get('/user','User\UserController@test');
 $router->post('phone/phone_register','User\UserController@user_register');
 
 //用户登录
-$router->post('/user/user_login','User\UserController@userLogin');
+$router->post('phone/phone_login','User\UserController@userLogin');
 //携带token
 $router->post('/user/user_vip','User\UserController@vip');
 //接口防刷
