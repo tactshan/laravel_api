@@ -37,18 +37,19 @@ class UserController
             exit;
         }
         $userInfo=UserModel::where(['email'=>$email])->first();
-        if(!empty($userInfo)){
-            echo '该邮箱已存在';
-            exit;
-        }
-        $insertData=[
-            'email'=>$email,
-            'pwd'=>$pwd
-        ];
-        $uid = UserModel::insertGetId($insertData);
-        if($uid){
-            echo '1';
-        }
+        echo json_encode($userInfo);
+//        if(!empty($userInfo)){
+//            echo '该邮箱已存在';
+//            exit;
+//        }
+//        $insertData=[
+//            'email'=>$email,
+//            'pwd'=>$pwd
+//        ];
+//        $uid = UserModel::insertGetId($insertData);
+//        if($uid){
+//            echo '1';
+//        }
     }
 
 
