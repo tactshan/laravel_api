@@ -28,8 +28,8 @@ class UserController
 
     public function user_register()
     {
-//        $data=$_POST;
-        $data=$_GET;
+        $data=$_POST;
+//        $data=$_GET;
 //        echo json_encode($data);die;
         $email = $data['email'];
         $pwd = $data['pwd'];
