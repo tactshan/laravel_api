@@ -74,7 +74,7 @@ class UserController
        $key = $this->redis_h_u_key.$uid;
        $res = Redis::hSet($key,'token',$token);
        if($res){
-           echo '登录成功！！！';
+           echo '1';
        }
        Redis::expire($key,3600*24*7);
     }
