@@ -28,8 +28,9 @@ class UserController
 
     public function user_register()
     {
-        $data=$_POST;
-        echo json_encode($data);
+//        $data=$_POST;
+        $data=$_GET;
+//        echo json_encode($data);die;
         $email = $data['email'];
         $pwd = $data['pwd'];
         if(empty($email)){
@@ -37,19 +38,18 @@ class UserController
             exit;
         }
         $userInfo=UserModel::where(['email'=>$email])->first();
-        echo json_encode($userInfo);
-//        if(!empty($userInfo)){
-//            echo '该邮箱已存在';
-//            exit;
-//        }
-//        $insertData=[
-//            'email'=>$email,
-//            'pwd'=>$pwd
-//        ];
-//        $uid = UserModel::insertGetId($insertData);
-//        if($uid){
-//            echo '1';
-//        }
+        if(!empty($userInfo)){
+            echo '该邮箱已存在';
+            exit;
+        }
+        $insertData=[
+            'email'=>$email,
+            'pwd'=>$pwd
+        ];
+        $uid = UserModel::insertGetId($insertData);
+        if($uid){
+            echo '1';
+        }
     }
 
 
