@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redis;
 class UserController
 {
     public $redis_h_u_key = 'h:user_token_u:';
+    public $public_key = './key/public_key.key';
     /**
      * Create a new controller instance.
      *
@@ -58,6 +59,49 @@ class UserController
         }else{
             echo "FAIL";
         }
+    }
 
+    //接口防刷
+    public function refresh_rate()
+    {
+        $time = $_GET['t'];
+        $key = $key = 'Tactshan';
+        $sort = 'xxxxx';
+        $iv = substr(md5($time.$sort),5,16);
+        $ssh_str = $_POST['ssh_str'];
+        $de_ssh_str = openssl_decrypt($ssh_str,'AES-128-CBC',$key,OPENSSL_RAW_DATA,$iv);
+        $str = 'Server received!!! 密文：'.$ssh_str.';译文：'.$de_ssh_str;
+        //加密服务器的响应
+        $now = time();
+        $res_vi = substr(md5($now.$sort),5,16);
+        $response_str = openssl_encrypt($str,'AES-128-CBC',$key,OPENSSL_RAW_DATA,$res_vi);
+        $data = base64_encode($response_str);
+        $info=[
+          't' =>$now,
+            'data'=>$data
+        ];
+        echo json_encode($info);
+
+    }
+
+    /**
+     * 设计加密
+     */
+    public function encrypt()
+    {
+     //
+    }
+
+    /**
+     * 使用公钥验证签名
+     */
+    public function checkPublic()
+    {
+        $sign = $_POST['sign'];
+        $data = $_POST['data'];
+        $data = 'Hello word!';
+        $public_key = file_get_contents($this->public_key);
+        $result = openssl_verify($data, base64_decode($sign), openssl_get_publickey($public_key), OPENSSL_ALGO_SHA256); //验证签名
+        var_dump($result);
     }
 }

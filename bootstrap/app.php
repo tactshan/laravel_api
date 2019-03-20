@@ -59,13 +59,14 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
+ $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+     App\Http\Middleware\RefreshRateBeforeMiddleware::class
+ ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+//     '/api/refresh' => App\Http\Middleware\RefreshRateBeforeMiddleware::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -100,3 +101,4 @@ $app->router->group([
 });
 
 return $app;
+

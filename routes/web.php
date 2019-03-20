@@ -15,8 +15,15 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+
 $router->get('/user','User\UserController@test');
 //用户登录
 $router->post('/user/user_login','User\UserController@userLogin');
 //携带token
 $router->post('/user/user_vip','User\UserController@vip');
+//接口防刷
+$router->post('/api/refresh','User\UserController@refresh_rate');
+//设计信息加密
+$router->get('/api/encrypt','User\UserController@encrypt');
+//非对称加密测试
+$router->post('/api/asymmetric','User\UserController@checkPublic');
