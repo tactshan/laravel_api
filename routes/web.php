@@ -17,6 +17,10 @@ $router->get('/', function () use ($router) {
 
 
 $router->get('/user','User\UserController@test');
+
+//用户注册
+$router->post('phone/phone_register','User\UserController@user_register');
+
 //用户登录
 $router->post('/user/user_login','User\UserController@userLogin');
 //携带token
