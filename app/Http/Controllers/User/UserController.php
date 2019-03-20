@@ -82,7 +82,8 @@ class UserController
     //识别用户信息
     public function vip(Request $request)
     {
-        print_r($_SERVER['HTTP_TOKEN']);
+        print_r($_SERVER);die;
+        print_r($_SERVER['HTTP_TOKEN']);die;
         echo '</br>';
         $uid=1000;
         $key=$this->redis_h_u_key.$uid;
@@ -94,6 +95,14 @@ class UserController
             echo "FAIL";
         }
     }
+
+    public function server_test()
+    {
+
+    }
+
+
+
 
     //接口防刷
     public function refresh_rate()
