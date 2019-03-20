@@ -90,6 +90,7 @@ class UserController
     public function encrypt()
     {
      //
+        echo 'test';
     }
 
     /**
