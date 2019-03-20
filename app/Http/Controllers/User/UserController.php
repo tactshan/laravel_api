@@ -29,25 +29,26 @@ class UserController
     public function user_register()
     {
         $data=$_POST;
-        $email = $data['email'];
-        $pwd = $data['pwd'];
-        if(empty($email)){
-            echo '邮箱不能为空！';
-            exit;
-        }
-        $userInfo=UserModel::where(['email'=>$email])->first();
-        if(!empty($userInfo)){
-            echo '该邮箱已存在';
-            exit;
-        }
-        $insertData=[
-            'email'=>$email,
-            'pwd'=>$pwd
-        ];
-        $uid = UserModel::insertGetId($insertData);
-        if($uid){
-            echo '1';
-        }
+        echo json_encode($data);
+//        $email = $data['email'];
+//        $pwd = $data['pwd'];
+//        if(empty($email)){
+//            echo '邮箱不能为空！';
+//            exit;
+//        }
+//        $userInfo=UserModel::where(['email'=>$email])->first();
+//        if(!empty($userInfo)){
+//            echo '该邮箱已存在';
+//            exit;
+//        }
+//        $insertData=[
+//            'email'=>$email,
+//            'pwd'=>$pwd
+//        ];
+//        $uid = UserModel::insertGetId($insertData);
+//        if($uid){
+//            echo '1';
+//        }
     }
 
 
