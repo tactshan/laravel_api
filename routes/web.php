@@ -15,9 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
+//首页
 $router->get('/user','User\UserController@test');
 
+$router->get('/index','Index\IndexController@index');
 //用户注册
 $router->post('phone/phone_register','User\UserController@user_register');
 
@@ -35,3 +36,5 @@ $router->post('/api/refresh','User\UserController@refresh_rate');
 $router->get('/api/encrypt','User\UserController@encrypt');
 //非对称加密测试
 $router->post('/api/asymmetric','User\UserController@checkPublic');
+
+$router->get('test/test02','User\UserController@test02');

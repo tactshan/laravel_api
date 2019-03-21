@@ -37,9 +37,9 @@ class UserController
         }
         $userInfo=UserModel::where(['email'=>$email])->first();
         if(!empty($userInfo)){
-            echo '该邮箱已存在';
-            exit;
-        }
+        echo '该邮箱已存在';
+        exit;
+    }
         $insertData=[
             'email'=>$email,
             'pwd'=>$pwd
@@ -102,8 +102,6 @@ class UserController
     }
 
 
-
-
     //接口防刷
     public function refresh_rate()
     {
@@ -147,5 +145,10 @@ class UserController
         $public_key = file_get_contents($this->public_key);
         $result = openssl_verify($data, base64_decode($sign), openssl_get_publickey($public_key), OPENSSL_ALGO_SHA256); //验证签名
         var_dump($result);
+    }
+
+    public function test02()
+    {
+        return view('test.test');
     }
 }
