@@ -16,7 +16,7 @@ class CheckLoginMiddleware
            //验证token
            $key = 'h:user_token_u:'.$_COOKIE['uid'];
            $token = Redis::hget($key,'token');
-           if($_COOKIE['token']!==$token){
+           if($_COOKIE['token']==$token){
                //有效
                $request->attributes->add(['is_login'=>1]);
            }else{
