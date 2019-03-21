@@ -68,11 +68,12 @@
 <div class="flex-center position-ref full-height">
 
         <div class="top-right links">
+            @if($is_login==1)
                 <a href="">Home</a>
-
+            @else
                 <a href="http://passprot.tactshan.com/login/passprot_login?url={{$request_url}}">Login</a>
                 <a href="http://passprot.tactshan.com/register/passprot_register">Register</a>
-
+            @endif
         </div>
 
 

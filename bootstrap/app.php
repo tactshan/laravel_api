@@ -61,7 +61,8 @@ $app->singleton(
 
  $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
-     App\Http\Middleware\RefreshRateBeforeMiddleware::class
+     App\Http\Middleware\RefreshRateBeforeMiddleware::class,
+     App\Http\Middleware\CheckLoginMiddleware::class
  ]);
 
  $app->routeMiddleware([
