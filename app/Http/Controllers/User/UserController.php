@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redis;
 class UserController
 {
     public $redis_h_u_key = 'h:user_token_u:';
+    public $phone_redis_h_u_key = 'h:phone_user_token_u:';
     public $public_key = './key/public_key.key';
     /**
      * Create a new controller instance.
@@ -157,9 +158,15 @@ class UserController
         curl_setopt($ch,CURLOPT_HEADER,0);
         $rs = curl_exec($ch);
         $data = json_decode($rs);
-//        var_dump($data);die;
-//        echo $data->email;
         $token = $data->token;
-        echo $token;die;
+        $uid = $data->uid;
+        //验证token
+        $key=$this->phone_redis_h_u_key.$uid;
+        $r_token=Redis::hget($key,'token');
+        if($r_token!==$token){
+            echo "登录成功";
+        }else{
+            echo "FAIL";
+        }
     }
 }
