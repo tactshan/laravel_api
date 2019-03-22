@@ -69,10 +69,10 @@ class UserController
        $str = time().$uid.mt_rand(1111,9999);
        $token=substr(md5($str),10,20);
 
-       //保存到redis中
-       $key = $this->redis_h_u_key.$uid;
-       $res = Redis::hSet($key,'token',$token);
-       if($res){
+           //保存到redis中
+           $key = $this->redis_h_u_key.$uid;
+           $res = Redis::hSet($key,'token',$token);
+           if($res){
            echo '1';
        }
        Redis::expire($key,3600*24*7);
@@ -156,6 +156,9 @@ class UserController
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_HEADER,0);
         $rs = curl_exec($ch);
-        var_dump($rs);die;
+        $data = json_decode($rs);
+        var_dump($data);die;
+        echo $data->email;
+
     }
 }
