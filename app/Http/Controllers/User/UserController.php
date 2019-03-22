@@ -172,4 +172,12 @@ class UserController
             echo "FAIL";
         }
     }
+
+    /**
+     * 退出
+     */
+    public function web_quit()
+    {
+        var_dump($_GET);die;
+    }
 }

@@ -33,3 +33,6 @@ $router->get('/api/encrypt','User\UserController@encrypt');
 $router->post('/api/asymmetric','User\UserController@checkPublic');
 
 $router->post('phone/phone_api','User\UserController@phoneAPI');
+
+//退出
+$router->get('/web/web_quit','User\UserController@web_quit');
