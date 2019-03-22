@@ -178,9 +178,14 @@ class UserController
      */
     public function web_quit()
     {
-        var_dump($_GET);die;
         $uid = $_GET['uid'];
+        $type = $_GET['type'];
+        if($type=='1'){
+            $token_type = 'web_token';
+        }else{
+            $token_type = 'app_token';
+        }
         $key=$this->redis_h_u_key.$uid;
-        $r_token=Redis::hdel($key,'app_token');
+        $r_token=Redis::hdel($key,$token_type);
     }
 }
