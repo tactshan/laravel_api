@@ -32,4 +32,4 @@ $router->get('/api/encrypt','User\UserController@encrypt');
 //非对称加密测试
 $router->post('/api/asymmetric','User\UserController@checkPublic');
 
-$router->get('phone/phone_api','User\UserController@phoneAPI');
+$router->post('phone/phone_api','User\UserController@phoneAPI');
