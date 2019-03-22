@@ -156,8 +156,8 @@ class UserController
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_HEADER,0);
         $rs = curl_exec($ch);
-//        $data = json_decode($rs);
-//        var_dump($data);die;
+        $data = json_decode($rs);
+        var_dump($data);die;
 //        echo $data->email;
 
     }
