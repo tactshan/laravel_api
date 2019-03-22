@@ -50,7 +50,6 @@ class UserController
         }
     }
 
-
     //用户登录
     public function userLogin(Request $request)
     {
@@ -95,12 +94,6 @@ class UserController
             echo "FAIL";
         }
     }
-
-    public function server_test()
-    {
-
-    }
-
 
     //接口防刷
     public function refresh_rate()
@@ -147,8 +140,8 @@ class UserController
         var_dump($result);
     }
 
-    public function test02()
+    public function phoneAPI()
     {
-        return view('test.test');
+        echo json_encode($_POST);
     }
 }

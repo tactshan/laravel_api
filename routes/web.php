@@ -21,13 +21,8 @@ $router->get('/user','User\UserController@test');
 $router->get('/index','Index\IndexController@index');
 //用户注册
 $router->post('phone/phone_register','User\UserController@user_register');
-
 //用户登录
 $router->post('phone/phone_login','User\UserController@userLogin');
-
-$router->get('test/server_test','User\UserController@server_test');
-
-
 //携带token
 $router->post('/user/user_vip','User\UserController@vip');
 //接口防刷
@@ -37,4 +32,4 @@ $router->get('/api/encrypt','User\UserController@encrypt');
 //非对称加密测试
 $router->post('/api/asymmetric','User\UserController@checkPublic');
 
-$router->get('test/test02','User\UserController@test02');
+$router->post('phone/phone_api','User\UserController@phoneAPI');
