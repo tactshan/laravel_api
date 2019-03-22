@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Redis;
 
 class UserController
 {
-    public $redis_h_u_key = 'h:user_token_u:';
-    public $phone_redis_h_u_key = 'h:phone_user_token_u:';
+    public $redis_h_u_key = 'h:user_token_uid:';
     public $public_key = './key/public_key.key';
     /**
      * Create a new controller instance.
@@ -151,6 +150,7 @@ class UserController
             'email'=>$_POST['email'],
             'pwd'=>$_POST['pwd']
         ];
+
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$info);
@@ -164,8 +164,8 @@ class UserController
         $token = $data->token;
         $uid = $data->uid;
         //验证token
-        $key=$this->phone_redis_h_u_key.$uid;
-        $r_token=Redis::hget($key,'token');
+        $key=$this->redis_h_u_key.$uid;
+        $r_token=Redis::hget($key,'app_token');
         if($r_token==$token){
             echo "登录成功";
         }else{
