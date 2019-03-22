@@ -150,11 +150,10 @@ class UserController
             'email'=>$_POST['email'],
             'pwd'=>$_POST['pwd']
         ];
-        print_r($info);die;
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$info);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,0);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_HEADER,0);
         $rs = curl_exec($ch);
         var_dump($rs);die;
