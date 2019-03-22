@@ -179,5 +179,8 @@ class UserController
     public function web_quit()
     {
         var_dump($_GET);die;
+        $uid = $_GET['uid'];
+        $key=$this->redis_h_u_key.$uid;
+        $r_token=Redis::hdel($key,'app_token');
     }
 }
