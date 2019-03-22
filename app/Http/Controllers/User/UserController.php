@@ -166,7 +166,7 @@ class UserController
         //验证token
         $key=$this->phone_redis_h_u_key.$uid;
         $r_token=Redis::hget($key,'token');
-        if($r_token!==$token){
+        if($r_token==$token){
             echo "登录成功";
         }else{
             echo "FAIL";
