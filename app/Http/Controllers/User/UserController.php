@@ -142,6 +142,20 @@ class UserController
 
     public function phoneAPI()
     {
-        echo json_encode($_POST);
+        //接受邮箱号和密码
+        //使用curl传输到passprot上进行授权登录
+        $url = 'http://passprot.tactshan.com/phone/login_data';
+        $ch = curl_init($url);
+        $info=[
+            'email'=>$_POST['email'],
+            'pwd'=>$_POST['pwd']
+        ];
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$info);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        $rs = curl_exec($ch);
+        var_dump($rs);die;
     }
 }
