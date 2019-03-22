@@ -158,6 +158,9 @@ class UserController
         curl_setopt($ch,CURLOPT_HEADER,0);
         $rs = curl_exec($ch);
         $data = json_decode($rs);
+        if($data->code==40001){
+            echo '账号或密码错误';die;
+        }
         $token = $data->token;
         $uid = $data->uid;
         //验证token
