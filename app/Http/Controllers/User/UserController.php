@@ -167,7 +167,12 @@ class UserController
         $key=$this->redis_h_u_key.$uid;
         $r_token=Redis::hget($key,'app_token');
         if($r_token==$token){
-            echo "登录成功";
+            $response_data=[
+              'code'=>0,
+              'msg'=>'登录成功',
+              'token'=>$token
+            ];
+            echo json_encode($response_data);
         }else{
             echo "FAIL";
         }
