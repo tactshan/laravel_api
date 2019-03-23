@@ -34,5 +34,8 @@ $router->post('/api/asymmetric','User\UserController@checkPublic');
 
 $router->post('phone/phone_api','User\UserController@phoneAPI');
 
+////app用户列表
+//$router->get('phone/phone_api','User\UserController@phoneAPI');
+
 //退出
 $router->get('/web/web_quit','User\UserController@web_quit');

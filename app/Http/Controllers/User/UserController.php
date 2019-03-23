@@ -169,12 +169,16 @@ class UserController
         if($r_token==$token){
             $response_data=[
               'code'=>0,
-              'msg'=>'登录成功',
+              'msg'=>'Login success!',
               'token'=>$token
             ];
             echo json_encode($response_data);
         }else{
-            echo "FAIL";
+            $response_data=[
+                'code'=>40001,
+                'msg'=>'False'
+            ];
+            echo json_encode($response_data);
         }
     }
 
