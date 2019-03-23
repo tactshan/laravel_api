@@ -200,4 +200,13 @@ class UserController
         $key=$this->redis_h_u_key.$uid;
         $r_token=Redis::hdel($key,$token_type);
     }
+
+    /**
+     * app用户列表
+     */
+    public function phoneUserDate(Request $request)
+    {
+        $token = $request->input('token');
+        var_dump($token);
+    }
 }
