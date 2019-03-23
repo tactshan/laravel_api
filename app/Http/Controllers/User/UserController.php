@@ -206,7 +206,7 @@ class UserController
      */
     public function phoneUserDate(Request $request)
     {
-        $token = $request->input('token');
+        $token = $request->post('token');
         var_dump($token);
     }
 }
