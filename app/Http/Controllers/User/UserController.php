@@ -159,7 +159,11 @@ class UserController
         $rs = curl_exec($ch);
         $data = json_decode($rs);
         if($data->code==40001){
-            echo '账号或密码错误';die;
+            $response_data=[
+                'code'=>40001,
+                'msg'=>'False'
+            ];
+            echo json_encode($response_data);die;
         }
         $token = $data->token;
         $uid = $data->uid;
@@ -174,7 +178,7 @@ class UserController
             ];
         }else{
             $response_data=[
-                'code'=>40001,
+                'code'=>40002,
                 'msg'=>'False'
             ];
         }
