@@ -172,14 +172,13 @@ class UserController
               'msg'=>'Login success!',
               'token'=>$token
             ];
-            echo json_encode($response_data);
         }else{
             $response_data=[
                 'code'=>40001,
                 'msg'=>'False'
             ];
-            echo json_encode($response_data);
         }
+        echo json_encode($response_data);
     }
 
     /**
