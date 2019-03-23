@@ -174,6 +174,7 @@ class UserController
             $response_data=[
               'code'=>0,
               'msg'=>'Login success!',
+                'uid'=>$uid,
               'token'=>$token
             ];
         }else{
@@ -206,7 +207,10 @@ class UserController
      */
     public function phoneUserDate(Request $request)
     {
-        $token = $request->post('token');
-        var_dump($token);
+        //验证用户token
+        $toekn=$request->post('token');
+        $token_type = 'app_token';
+        $key=$this->redis_h_u_key.$uid;
+        //获取用户数据信息
     }
 }
