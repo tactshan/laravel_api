@@ -209,6 +209,8 @@ class UserController
     {
         //验证用户token
         $toekn=$request->post('token');
+        $uid=$request->post('uid');
+        echo 'token:'.$toekn.'uid:'.$uid;die;
         $token_type = 'app_token';
         $key=$this->redis_h_u_key.$uid;
         //获取用户数据信息
