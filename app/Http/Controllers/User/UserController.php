@@ -219,7 +219,9 @@ class UserController
         }
         //获取用户数据信息
         $user_data = UserModel::all()->toArray();
-//        echo json_encode($user_data);
-        print_r($user_data);
+        $info=[
+          'data'=>$user_data
+        ];
+        echo json_encode($info);
     }
 }
