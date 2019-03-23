@@ -218,11 +218,9 @@ class UserController
             echo '身份验证失败！';die;
         }
         //获取用户数据信息
-        $user_data = UserModel::all()->toArray();
-//        $info=[
-//          'data'=>$user_data
-//        ];
-        echo json_encode($user_data);
-//        print_r($user_data);
+        $user_data = UserModel::all();
+
+//        echo json_encode($user_data);
+        var_dump($user_data);
     }
 }
