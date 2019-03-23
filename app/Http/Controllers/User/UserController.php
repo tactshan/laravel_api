@@ -208,11 +208,17 @@ class UserController
     public function phoneUserDate(Request $request)
     {
         //验证用户token
-        $toekn=$request->post('token');
+        $token=$request->post('token');
         $uid=$request->post('uid');
-        echo 'token:'.$toekn.'uid:'.$uid;die;
+//        echo 'token:'.$toekn.'uid:'.$uid;die;
         $token_type = 'app_token';
         $key=$this->redis_h_u_key.$uid;
+        $server_token=Redis::hget($key,$token_type);
+        if($token!==$server_token){
+            echo '身份验证失败！';die;
+        }
         //获取用户数据信息
+        $user_data = UserModel::all()->toArray();
+        echo json_encode($user_data);
     }
 }
