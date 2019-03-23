@@ -222,7 +222,7 @@ class UserController
 //        $info=[
 //          'data'=>$user_data
 //        ];
-//        echo json_encode($info);
-        print_r($user_data);
+        echo json_encode($user_data);
+//        print_r($user_data);
     }
 }
