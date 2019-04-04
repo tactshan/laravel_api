@@ -27,21 +27,21 @@ class RefreshRateBeforeMiddleware
         }else{
             $num=Redis::get($key);
             $init_num=(int)$num;
-//            var_dump($init_num);echo '</br>';
+            var_dump($init_num);echo '</br>';
             $time=Redis::ttl($key);
-//            var_dump($time);echo '</br>';
+            var_dump($time);echo '</br>';
             if($num<20&&$time<60){
                 $num=Redis::incr($key);
             }else{
                 //记录客户端ip
                 $ip_key = 'vicious_ip';
-                Redis::sAdd($ip_key,$ip);  //获取SMEMBERS
+                Redis::sAdd($ip_key,$ip);  //获取SMEMBERS  sadd集合
                 Redis::expire($key,600);
                 $response=[
                   'error' => '50001', //50001访问频率过高
-                  'msg' => 'error',
+                  'msg' => 'many request',
                 ];
-                echo json_encode($response);
+                echo json_encode($response);die;
             }
         }
         return $next($request);

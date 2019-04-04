@@ -180,7 +180,8 @@ class UserController
         }else{
             $response_data=[
                 'code'=>40002,
-                'msg'=>'False'
+                'msg'=>'False',
+                'token'=>0
             ];
         }
         echo json_encode($response_data);
